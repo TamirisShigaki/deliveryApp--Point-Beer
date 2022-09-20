@@ -2,7 +2,7 @@
 
 module.exports = {
   async up (queryInterface, Sequelize) {
-    await queryInterface.bulkInsert('users',
+    await queryInterface.bulkInsert('products',
     [{
       id: 1,
       name: 'Skol Lata 250ml',

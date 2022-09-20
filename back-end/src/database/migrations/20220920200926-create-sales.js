@@ -37,8 +37,14 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false
       },
-      saleDate: Sequelize.DATETIME,
-      status: Sequelize.STRING,
+      saleDate: {
+        type: Sequelize.DATE,
+        allowNull: false
+      },
+      status: {
+        type: Sequelize.STRING,
+        allowNull: false
+      } 
     }, {underscored: true});
   },
 
