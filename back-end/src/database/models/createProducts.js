@@ -1,5 +1,5 @@
 const createProducts = (sequelize, DataTypes) => {
-  const Sales = sequelize.define('products', {
+  const Products = sequelize.define('products', {
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
@@ -22,7 +22,7 @@ const createProducts = (sequelize, DataTypes) => {
   //   Sales.belongsTo(db.User, { as: 'seller', foreignKey: 'seller_id' });
   // }
 
-  return Sales;
+  return Products;
 };
 
 module.exports = createProducts;
