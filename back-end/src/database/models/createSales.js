@@ -21,20 +21,20 @@ const createSales = (sequelize, DataTypes) => {
     total_price: DataTypes.DECIMAL,
     delivery_address: DataTypes.STRING,
     delivery_number: DataTypes.STRING,
-    sale_date: DataTypes.DATETIME,
+    sale_date: DataTypes.DATE,
     status: DataTypes.STRING
   }, {
     tableName: 'sales',
     timestamps: false,
   });
 
-  Sales.associate = (db) => {
-    Sales.belongsTo(db.User, { as: 'user', foreignKey: 'user_id' });
-  }
+  // Sales.associate = (db) => {
+  //   Sales.belongsTo(db.User, { as: 'user', foreignKey: 'user_id' });
+  // }
 
-  Sales.associate = (db) => {
-    Sales.belongsTo(db.User, { as: 'seller', foreignKey: 'seller_id' });
-  }
+  // Sales.associate = (db) => {
+  //   Sales.belongsTo(db.User, { as: 'seller', foreignKey: 'seller_id' });
+  // }
 
   return Sales;
 };
