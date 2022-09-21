@@ -1,3 +1,4 @@
+const md5 = require('md5');
 const jwtService = require('./jwtService');
 const db = require('../database/models');
 
@@ -8,9 +9,10 @@ const authService = {
       where: { email },
     });
 
-    console.log(user);
+    const senha = md5(password);
 
-    if (!user || password !== user.dataValues.password) {
+    const checkPassword = senha === user.password;
+    if (!user || !checkPassword) {
       const err = new Error('Invalid fields');
       err.name = 'UnauthorizedError';
       throw err;

@@ -1,5 +1,6 @@
 const express = require('express');
 require('express-async-errors');
+const errorMiddleware = require('../middleware/errorMiddleware');
 
 const authRouter = require('../routes/authRouter');
 
@@ -12,5 +13,7 @@ app.get('/coffee', (_req, res) => res.status(418).end());
 app.use('/login', authRouter);
 
 app.get('/', (_req, res) => res.status(418).send('entrou'));
+
+app.use(errorMiddleware);
 
 module.exports = app;
