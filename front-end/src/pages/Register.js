@@ -2,21 +2,27 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { requestLogin } from '../services/requestUser';
 
-function Login() {
+function Register() {
+  const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [buttonDisabled, setButtonDisabled] = useState(true);
-  const [isLogged, setIsLogged] = useState(false);
-  const [failedTryLogin, setFailedTryLogin] = useState(false);
+  const [isRegistered, setIsRegistered] = useState(false);
+  const [failedTryRegister, setFailedTryRegister] = useState(false);
   const navigate = useNavigate();
 
-  console.log(isLogged);
+  console.log(isRegistered);
 
   const handleLoginValidation = () => {
     const emailRegex = /\S+@\S+\.\S+/;
     const minLengthPassword = 5;
+    const minLengthName = 12;
     const validEmail = emailRegex.test(email);
-    if (validEmail && password.length >= minLengthPassword) {
+    if (
+      validEmail
+      && password.length >= minLengthPassword
+      && username.length >= minLengthName
+    ) {
       setButtonDisabled(false);
     } else {
       setButtonDisabled(true);
@@ -24,33 +30,43 @@ function Login() {
   };
 
   function handleChange({ target: { name, value } }) {
-    const login = {
+    const register = {
+      username: () => setUsername(value),
       email: () => setEmail(value),
       password: () => setPassword(value),
     };
-    login[name]();
+    register[name]();
     handleLoginValidation();
   }
 
-  const login = async (event) => {
+  const register = async (event) => {
     event.preventDefault();
     try {
-      await requestLogin('/login', { email, password });
-      setIsLogged(true);
+      await requestLogin('/register', { username, email, password });
+
+      setIsRegistered(true);
       navigate('/customer/products');
     } catch (error) {
-      setFailedTryLogin(true);
-      setIsLogged(false);
+      setFailedTryRegister(true);
+      setIsRegistered(false);
     }
   };
 
   return (
-    <main className="main-login">
-      <form className="form-login">
+    <main className="main-register">
+      <form className="form-register">
+        <input
+          type="text"
+          placeholder="Seu nome"
+          data-testid="common_register__input-name"
+          value={ username }
+          onChange={ handleChange }
+          name="username"
+        />
         <input
           type="email"
           placeholder="email@email.com"
-          data-testid="common_login__input-email"
+          data-testid="common_register__input-email"
           value={ email }
           onChange={ handleChange }
           name="email"
@@ -58,32 +74,25 @@ function Login() {
         <input
           type="password"
           placeholder="******"
-          data-testid="common_login__input-password"
+          data-testid="common_register__input-password"
           onChange={ handleChange }
           name="password"
         />
         <button
-          data-testid="common_login__button-login"
+          data-testid="common_register__button-register"
           type="submit"
           disabled={ buttonDisabled }
-          onClick={ (event) => login(event) }
+          onClick={ (event) => register(event) }
         >
-          Login
-        </button>
-        <button
-          data-testid="common_login__button-register"
-          type="submit"
-          onClick={ () => navigate('/register') }
-        >
-          Ainda não tenho conta
+          Cadastrar
         </button>
       </form>
-      { failedTryLogin && (
-        <span data-testid="common_login__element-invalid-email">
+      { failedTryRegister && (
+        <span data-testid="common_register__element-invalid_register">
           Dados inexistentes
         </span>)}
     </main>
   );
 }
 
-export default Login;
+export default Register;
