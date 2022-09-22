@@ -8,12 +8,12 @@
     "method": "POST",
     "sortNum": 10000,
     "created": "2022-09-21T18:46:45.632Z",
-    "modified": "2022-09-21T21:41:17.408Z",
+    "modified": "2022-09-22T01:18:05.449Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n  \"email\": \"adm@deliveryapp.com\",\n  \"password\": \"--adm2@21!!-\"\n}",
+      "raw": "{\n  \"email\": \"dm@deliveryapp.com\",\n  \"password\": \"--adm2@21!!--\"\n}",
       "form": []
     },
     "tests": []

@@ -31,7 +31,6 @@ function Login() {
 
   const login = async (event) => {
     event.preventDefault();
-    console.log('clicou');
     try {
       const data = await requestLogin('/login', { email, password });
       console.log('data', data);
