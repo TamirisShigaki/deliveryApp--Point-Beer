@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { requestLogin } from '../services/requestUser';
 
 function Login() {
@@ -7,6 +8,8 @@ function Login() {
   const [buttonDisabled, setButtonDisabled] = useState(true);
   const [isLogged, setIsLogged] = useState(false);
   const [failedTryLogin, setFailedTryLogin] = useState(false);
+  const navigate = useNavigate();
+
   console.log(isLogged);
 
   const handleLoginValidation = () => {
@@ -34,13 +37,6 @@ function Login() {
     try {
       const data = await requestLogin('/login', { email, password });
       console.log('data', data);
-
-      // setToken(token);
-
-      // const { role } = await requestData('/login/validate', { email, password });
-
-      // localStorage.setItem('token', token);
-      // localStorage.setItem('role', role);
 
       setIsLogged(true);
     } catch (error) {
@@ -78,11 +74,11 @@ function Login() {
         <button
           data-testid="common_login__button-register"
           type="submit"
+          onClick={ () => navigate('/register') }
         >
           Ainda não tenho conta
         </button>
       </form>
-
       { failedTryLogin && (
         <span data-testid="common_login__element-invalid-email">
           Dados inexistentes
