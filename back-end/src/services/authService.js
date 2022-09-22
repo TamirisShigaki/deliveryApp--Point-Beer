@@ -8,7 +8,7 @@ const authService = {
     const user = await db.users.findOne({
       where: { email },
     });
-    if (!user){
+    if (!user) {
       const err = new Error('User not found');
       err.name = 'NotFoundError';
       throw err;
