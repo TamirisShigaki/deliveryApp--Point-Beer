@@ -1,6 +1,8 @@
 import React from 'react';
 
 function Header() {
+  const user = localStorage.getItem('user');
+
   return (
     <header>
       <nav>
@@ -12,10 +14,15 @@ function Header() {
             MEUS PEDIDOS
           </li>
           <li data-testid="customer_products__element-navbar-user-full-name">
-            FULANO
+            {JSON.parse(user).name}
           </li>
           <li data-testid="customer_products__element-navbar-link-logout">
-            SAIR
+            <button
+              type="button"
+              onClick={ localStorage.clear }
+            >
+              Sair
+            </button>
           </li>
         </ul>
       </nav>

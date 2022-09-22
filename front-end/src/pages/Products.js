@@ -10,6 +10,7 @@ function Products() {
   useEffect(() => {
     async function getProducts() {
       const result = await requestData('/products');
+      console.log(result);
       setProducts(result);
       setLoading(true);
     }
@@ -21,12 +22,13 @@ function Products() {
       <Header />
       <div>
         { !loading ? <span>Carregando...</span>
-          : products.map(({ img, id, title }, index) => (
+          : products.map(({ name, price, url_image: urlImage, id }) => (
             <Card
               key={ id }
-              title={ title }
-              img={ img }
-              index={ index }
+              price={ price }
+              title={ name }
+              img={ urlImage }
+              id={ id }
             />))}
       </div>
     </main>
