@@ -8,11 +8,14 @@ const authService = {
     const user = await db.users.findOne({
       where: { email },
     });
+    if (!user) {
+      const err = new Error('User not found');
+      err.name = 'NotFoundError';
+      throw err;
+    }
 
-    const senha = md5(password);
-
-    const checkPassword = senha === user.password;
-    if (!user || !checkPassword) {
+    const checkPassword = md5(password) === user.password;
+    if (!checkPassword) {
       const err = new Error('Invalid fields');
       err.name = 'UnauthorizedError';
       throw err;
