@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { requestLogin } from '../services/requestUser';
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -30,10 +31,10 @@ function Login() {
 
   const login = async (event) => {
     event.preventDefault();
-
+    console.log('clicou');
     try {
       const data = await requestLogin('/login', { email, password });
-      console.log(data);
+      console.log('data', data);
 
       // setToken(token);
 
@@ -71,7 +72,7 @@ function Login() {
           data-testid="common_login__button-login"
           type="submit"
           disabled={ buttonDisabled }
-          onClick={ login }
+          onClick={ (event) => login(event) }
         >
           Login
         </button>

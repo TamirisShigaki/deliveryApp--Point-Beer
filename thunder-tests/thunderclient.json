@@ -1,0 +1,21 @@
+[
+  {
+    "_id": "0d0069e1-6ce3-4513-86e9-12ba4d303eeb",
+    "colId": "afaaf771-e83f-40b7-82b8-f6618fecf24a",
+    "containerId": "",
+    "name": "localhost:3001/login",
+    "url": "localhost:3001/login",
+    "method": "POST",
+    "sortNum": 10000,
+    "created": "2022-09-21T18:46:45.632Z",
+    "modified": "2022-09-21T21:41:17.408Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"email\": \"adm@deliveryapp.com\",\n  \"password\": \"--adm2@21!!-\"\n}",
+      "form": []
+    },
+    "tests": []
+  }
+]
