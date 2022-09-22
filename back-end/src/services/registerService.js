@@ -1,11 +1,11 @@
 const Joi = require('joi');
 const md5 = require('md5');
-const { users } = require('../database/models/');
+const { users } = require('../database/models');
 
 const schemaUser = Joi.object({
   username: Joi.string().min(12).required(),
   email: Joi.string().email().required(),
-  password: Joi.string().min(6).alphanum().required(),
+  password: Joi.string().min(6).required(),
 });
 
 const registerService = {
@@ -23,10 +23,10 @@ const registerService = {
       const err = new Error('User already registered');
       err.name = 'ConflictError';
       throw err;
-    };
+    }
     
     return users.create({ name: username, email, password: newPassword, role: 'customer' });
-  }
+  },
 };
 
 module.exports = registerService;

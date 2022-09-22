@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { requestLogin } from '../services/requestUser';
 
 function Register() {
@@ -8,6 +9,7 @@ function Register() {
   const [buttonDisabled, setButtonDisabled] = useState(true);
   const [isRegistered, setIsRegistered] = useState(false);
   const [failedTryRegister, setFailedTryRegister] = useState(false);
+  const navigate = useNavigate();
 
   console.log(isRegistered);
 
@@ -40,10 +42,10 @@ function Register() {
   const register = async (event) => {
     event.preventDefault();
     try {
-      const data = await requestLogin('/register', { username, email, password });
-      console.log('data', data);
+      await requestLogin('/register', { username, email, password });
 
       setIsRegistered(true);
+      navigate('/customer/products');
     } catch (error) {
       setFailedTryRegister(true);
       setIsRegistered(false);

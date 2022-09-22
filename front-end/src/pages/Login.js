@@ -35,10 +35,9 @@ function Login() {
   const login = async (event) => {
     event.preventDefault();
     try {
-      const data = await requestLogin('/login', { email, password });
-      console.log('data', data);
-
+      await requestLogin('/login', { email, password });
       setIsLogged(true);
+      navigate('/customer/products');
     } catch (error) {
       setFailedTryLogin(true);
       setIsLogged(false);
