@@ -1,16 +1,13 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { requestLogin } from '../services/requestUser';
+import { requestLogin, requestUser, setToken } from '../services/requestUser';
 
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [buttonDisabled, setButtonDisabled] = useState(true);
-  const [isLogged, setIsLogged] = useState(false);
   const [failedTryLogin, setFailedTryLogin] = useState(false);
   const navigate = useNavigate();
-
-  console.log(isLogged);
 
   const handleLoginValidation = () => {
     const emailRegex = /\S+@\S+\.\S+/;
@@ -35,12 +32,20 @@ function Login() {
   const login = async (event) => {
     event.preventDefault();
     try {
-      await requestLogin('/login', { email, password });
-      setIsLogged(true);
+      const { token } = await requestLogin('/login', { email, password });
+      setToken(token);
+      const { name, role } = await requestUser('/users', { email });
+      const userData = {
+        name,
+        email,
+        role,
+        token,
+      };
+      localStorage.setItem('user', JSON.stringify(userData));
       navigate('/customer/products');
     } catch (error) {
+      console.log(error);
       setFailedTryLogin(true);
-      setIsLogged(false);
     }
   };
 
