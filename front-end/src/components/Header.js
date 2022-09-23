@@ -1,7 +1,14 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function Header() {
   const user = localStorage.getItem('user');
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate('/login');
+    localStorage.clear();
+  };
 
   return (
     <header>
@@ -19,7 +26,7 @@ function Header() {
           <li data-testid="customer_products__element-navbar-link-logout">
             <button
               type="button"
-              onClick={ localStorage.clear }
+              onClick={ handleClick }
             >
               Sair
             </button>

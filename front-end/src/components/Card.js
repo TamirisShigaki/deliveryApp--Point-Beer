@@ -2,24 +2,40 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './Card.css';
 
-function Card({ price, img, title, qtd, index }) {
+function Card({ price, img, title, qtd, id }) {
   return (
     <div>
-      <p data-testid={ `customer_products__element-card-price-${index}` }>
+      <p data-testid={ `customer_products__element-card-price-${id}` }>
         {price}
       </p>
       <div>
         <img
           src={ img }
           alt={ title }
-          data-testid={ `customer_products__img-card-bg-image-${index}` }
+          data-testid={ `customer_products__img-card-bg-image-${id}` }
         />
       </div>
-      <p data-testid={ `customer_products__element-card-title-${index}` }>{title}</p>
-      <div data-testid={ `customer_products__input-card-quantity-${index}` }>
-        <button type="button">-</button>
-        <span>{qtd}</span>
-        <button type="button">+</button>
+      <p data-testid={ `customer_products__element-card-title-${id}` }>{title}</p>
+      <div data-testid={ `customer_products__input-card-quantity-${id}` }>
+        <button
+          type="button"
+          data-testid={ `customer_products__button-card-rm-item--${id}` }
+        >
+          -
+        </button>
+        <input
+          type="number"
+          data-testid={ `customer_products__input-card-quantity-${id}` }
+          // onChange={ handleChange }
+          name="qtd"
+          value={ qtd }
+        />
+        <button
+          type="button"
+          data-testid={ `customer_products__button-card-add-item-${id}` }
+        >
+          +
+        </button>
       </div>
     </div>
   );
