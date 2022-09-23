@@ -26,7 +26,7 @@ function Header() {
           <li>
             <button
               type="button"
-              onClick={ localStorage.clear }
+              onClick={ handleClick }
             >
               Sair
             </button>

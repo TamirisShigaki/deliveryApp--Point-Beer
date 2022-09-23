@@ -21,6 +21,10 @@ function Products() {
     getProducts();
   }, []);
 
+  const finishedCart = () => {
+    navigate('/customer/checkout');
+  };
+
   return (
     <main>
       <Header />
@@ -39,7 +43,7 @@ function Products() {
       <button
         type="button"
         data-testid="customer_products__button-cart"
-        onClick={ () => navigate('/customer/checkout') }
+        onClick={ finishedCart }
         disabled={ total === 0 }
       >
         Ver carrinho: R$
