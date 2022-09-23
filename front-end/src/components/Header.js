@@ -25,6 +25,7 @@ function Header() {
           </li>
           <li>
             <button
+              data-testid="customer_products__element-navbar-link-logout"
               type="button"
               onClick={ handleClick }
             >

@@ -1,30 +1,40 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import PropTypes from 'prop-types';
 import './Card.css';
 import appContext from '../context/appContext';
 
 function Card({ price, img, title, id }) {
   const [qtd, setQtd] = useState(0);
-  const { total, setTotal } = useContext(appContext);
+  const { removeProductToCart, addProducToCart } = useContext(appContext);
 
-  const changeQtd = async ({ target: { name } }) => {
+  // const qtdItem = cart.length === 0 ? cart.find((product) => product.id === id) : 0;
+  const changeQtd = ({ target: { name, value } }) => {
     if (name === 'increases') {
-      setQtd(qtd + 1);
-      const sum = Number((total + Number(price)).toFixed(2));
-      setTotal(sum);
-    }
-    if (name === 'decreases' && qtd > 0) {
-      setQtd(qtd - 1);
-      const sub = Number((total - Number(price)).toFixed(2));
-      setTotal(sub);
-    }
-  };
+      setQtd((prevQtd) => {
+        addProducToCart(id, title, price, prevQtd + 1);
+        return prevQtd + 1;
+      });
+      // setQtd(qtd + 1);
 
-  const handleChange = ({ target: { value } }) => {
-    setQtd(Number(value));
-    const sum = Number((total + (Number(value) * Number(price))).toFixed(2));
-    setTotal(sum);
+      // addProducToCart(id, title, price, qtd);
+    } else if (name === 'decreases' && qtd > 0) {
+      setQtd((prevQtd) => {
+        removeProductToCart(id, prevQtd - 1);
+        return prevQtd - 1;
+      });
+    } else if (name === 'input') {
+      setQtd(() => {
+        addProducToCart(id, title, price, qtd);
+        return Number(value);
+      });
+      console.log('value', value);
+    }
   };
+  // console.log(cart);
+  // useEffect(() => {
+  //   if (qt)
+  //   addProducToCart(id, title, price, qtd);
+  // }, [qtd]);
 
   return (
     <div>
@@ -43,20 +53,22 @@ function Card({ price, img, title, id }) {
         <button
           type="button"
           data-testid={ `customer_products__button-card-rm-item-${id}` }
-          onClick={ changeQtd }
+          onClick={ (event) => changeQtd(event) }
           name="decreases"
         >
           -
         </button>
         <input
           data-testid={ `customer_products__input-card-quantity-${id}` }
-          onChange={ handleChange }
+          onFocus
+          onBlur={ (event) => changeQtd(event) }
           value={ qtd }
+          name="input"
         />
         <button
           type="button"
           data-testid={ `customer_products__button-card-add-item-${id}` }
-          onClick={ changeQtd }
+          onClick={ (event) => changeQtd(event) }
           name="increases"
         >
           +
