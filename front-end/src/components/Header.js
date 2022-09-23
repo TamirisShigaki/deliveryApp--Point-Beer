@@ -1,7 +1,14 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function Header() {
   const user = localStorage.getItem('user');
+  const navigate = useNavigate();
+
+  const logout = () => {
+    localStorage.clear();
+    navigate('/login');
+  };
 
   return (
     <header>
@@ -16,10 +23,11 @@ function Header() {
           <li data-testid="customer_products__element-navbar-user-full-name">
             {JSON.parse(user).name}
           </li>
-          <li data-testid="customer_products__element-navbar-link-logout">
+          <li>
             <button
+              data-testid="customer_products__element-navbar-link-logout"
               type="button"
-              onClick={ localStorage.clear }
+              onClick={ logout }
             >
               Sair
             </button>

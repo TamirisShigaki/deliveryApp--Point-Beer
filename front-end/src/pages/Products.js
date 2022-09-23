@@ -1,16 +1,20 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Card from '../components/Card';
 import Header from '../components/Header';
+import appContext from '../context/appContext';
 import { requestData } from '../services/requestUser';
 
 function Products() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
+  const { total } = useContext(appContext);
+  const totalNumber = `${total}`;
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function getProducts() {
       const result = await requestData('/products');
-      console.log(result);
       setProducts(result);
       setLoading(true);
     }
@@ -31,6 +35,19 @@ function Products() {
               id={ id }
             />))}
       </div>
+      <button
+        type="button"
+        data-testid="customer_products__button-cart"
+        onClick={ () => navigate('/customer/checkout') }
+        disabled={ total === 0 }
+      >
+        Ver carrinho: R$
+        <span
+          data-testid="customer_products__checkout-bottom-value"
+        >
+          {` ${totalNumber.replace(/\./, ',')}`}
+        </span>
+      </button>
     </main>
 
   );
