@@ -5,9 +5,9 @@ function Header() {
   const user = localStorage.getItem('user');
   const navigate = useNavigate();
 
-  const logout = () => {
-    localStorage.clear();
+  const handleClick = () => {
     navigate('/login');
+    localStorage.clear();
   };
 
   return (
@@ -25,9 +25,8 @@ function Header() {
           </li>
           <li>
             <button
-              data-testid="customer_products__element-navbar-link-logout"
               type="button"
-              onClick={ logout }
+              onClick={ localStorage.clear }
             >
               Sair
             </button>
