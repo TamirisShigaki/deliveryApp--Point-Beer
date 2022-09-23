@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import './Card.css';
 
 function Card({ price, img, title, qtd, index }) {
   return (
