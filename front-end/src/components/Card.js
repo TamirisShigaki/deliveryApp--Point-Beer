@@ -6,7 +6,7 @@ function Card({ price, img, title, qtd, id }) {
   return (
     <div>
       <p data-testid={ `customer_products__element-card-price-${id}` }>
-        {price}
+        {price.replace(/\./, ',')}
       </p>
       <div>
         <img
