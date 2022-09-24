@@ -4,32 +4,35 @@ import AppContext from './appContext';
 
 function AppProvider({ children }) {
   const [cart, setCart] = useState([]);
+  const [total, setTotal] = useState(0);
 
-  function addProducToCart(id, title, price, qtd) {
+  function totalPriceCalc(newCart) {
+    const copyProductsCart = [...newCart];
+    const totalPrice = copyProductsCart.reduce((acc, product) => {
+      acc += product.subTotal;
+      return acc;
+    }, 0);
+    setTotal(totalPrice);
+  }
+
+  function changeProductQtd(id, title, price, qtd) {
     const copyProductsCart = [...cart];
-    console.log('entrou add');
-    console.log('qtd dentro add', qtd);
     const item = copyProductsCart.find((product) => product.id === id);
     if (!item) {
-      copyProductsCart.push({ id, title, qtd, price });
+      copyProductsCart.push({ id, title, qtd, price, subTotal: qtd * price });
     } else {
       item.qtd = qtd;
+      item.subTotal = qtd * price;
     }
 
-    setCart(copyProductsCart);
+    setCart(() => {
+      totalPriceCalc(copyProductsCart);
+      return copyProductsCart;
+    });
+    // setCart(copyProductsCart);
   }
+  console.log(total);
   console.log(cart);
-  // function addInput(id, title, price, qtd) {
-  //   const copyProductsCart = [...cart];
-  //   const item = copyProductsCart.find((product) => product.id === id);
-  //   if (!item) {
-  //     copyProductsCart.push({ id, title, qtd, price });
-  //   } else {
-  //     item.qtd = qtd;
-  //   }
-
-  //   setCart(copyProductsCart);
-  // }
 
   function removeProductToCart(id, qtd) {
     const copyProductsCart = [...cart];
@@ -38,12 +41,17 @@ function AppProvider({ children }) {
 
     if (item && qtd >= 1) {
       item.qtd = qtd;
+      item.subTotal = qtd * item.price;
       setCart(copyProductsCart);
     } else {
       const arrayFiltered = copyProductsCart.filter(
         (product) => product.id !== id,
       );
-      setCart(arrayFiltered);
+      setCart(() => {
+        totalPriceCalc(arrayFiltered);
+        return arrayFiltered;
+      });
+      // setCart(arrayFiltered);
     }
   }
 
@@ -53,8 +61,9 @@ function AppProvider({ children }) {
 
   const contextValue = useMemo(() => ({
     cart,
+    total,
     setCart,
-    addProducToCart,
+    changeProductQtd,
     removeProductToCart,
     clearCart,
   }), [cart]);

@@ -5,18 +5,14 @@ import appContext from '../context/appContext';
 
 function Card({ price, img, title, id }) {
   const [qtd, setQtd] = useState(0);
-  const { removeProductToCart, addProducToCart } = useContext(appContext);
+  const { removeProductToCart, changeProductQtd } = useContext(appContext);
 
-  // const qtdItem = cart.length === 0 ? cart.find((product) => product.id === id) : 0;
   const changeQtd = ({ target: { name, value } }) => {
     if (name === 'increases') {
       setQtd((prevQtd) => {
-        addProducToCart(id, title, price, prevQtd + 1);
+        changeProductQtd(id, title, price, prevQtd + 1);
         return prevQtd + 1;
       });
-      // setQtd(qtd + 1);
-
-      // addProducToCart(id, title, price, qtd);
     } else if (name === 'decreases' && qtd > 0) {
       setQtd((prevQtd) => {
         removeProductToCart(id, prevQtd - 1);
@@ -24,15 +20,10 @@ function Card({ price, img, title, id }) {
       });
     } else if (name === 'input') {
       setQtd(Number(value));
-      addProducToCart(id, title, price, Number(value));
+      changeProductQtd(id, title, price, Number(value));
       console.log('value', value);
     }
   };
-  // console.log(cart);
-  // useEffect(() => {
-  //   if (qt)
-  //   addProducToCart(id, title, price, qtd);
-  // }, [qtd]);
 
   return (
     <div>
