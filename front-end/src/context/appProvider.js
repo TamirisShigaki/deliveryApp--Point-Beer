@@ -7,7 +7,8 @@ function AppProvider({ children }) {
 
   function addProducToCart(id, title, price, qtd) {
     const copyProductsCart = [...cart];
-
+    console.log('entrou add');
+    console.log('qtd dentro add', qtd);
     const item = copyProductsCart.find((product) => product.id === id);
     if (!item) {
       copyProductsCart.push({ id, title, qtd, price });

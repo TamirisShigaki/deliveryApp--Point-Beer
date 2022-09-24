@@ -23,10 +23,8 @@ function Card({ price, img, title, id }) {
         return prevQtd - 1;
       });
     } else if (name === 'input') {
-      setQtd(() => {
-        addProducToCart(id, title, price, qtd);
-        return Number(value);
-      });
+      setQtd(Number(value));
+      addProducToCart(id, title, price, Number(value));
       console.log('value', value);
     }
   };
@@ -60,8 +58,7 @@ function Card({ price, img, title, id }) {
         </button>
         <input
           data-testid={ `customer_products__input-card-quantity-${id}` }
-          onFocus
-          onBlur={ (event) => changeQtd(event) }
+          onChange={ (event) => changeQtd(event) }
           value={ qtd }
           name="input"
         />
