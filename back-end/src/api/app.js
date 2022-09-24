@@ -6,17 +6,19 @@ const errorMiddleware = require('../middleware/errorMiddleware');
 const authRouter = require('../routes/authRouter');
 const registerRouter = require('../routes/registerRouter');
 const productRouter = require('../routes/productRouter');
+const userRouter = require('../routes/userRouter');
 
 const app = express();
 
 app.use(express.json());
 app.use(cors());
-
+app.use(express.static('public'));
 app.get('/coffee', (_req, res) => res.status(418).end());
 
 app.use('/login', authRouter);
 app.use('/register', registerRouter);
 app.use('/products', productRouter);
+app.use('/users', userRouter);
 
 app.use(errorMiddleware);
 

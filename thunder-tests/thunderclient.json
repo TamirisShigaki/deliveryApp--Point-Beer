@@ -31,5 +31,24 @@
     "headers": [],
     "params": [],
     "tests": []
+  },
+  {
+    "_id": "15e89000-6fe0-4e80-9e6b-ae91ff7125d9",
+    "colId": "afaaf771-e83f-40b7-82b8-f6618fecf24a",
+    "containerId": "",
+    "name": "get user",
+    "url": "localhost:3001/users",
+    "method": "POST",
+    "sortNum": 30000,
+    "created": "2022-09-22T21:34:59.307Z",
+    "modified": "2022-09-22T21:57:55.526Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"email\": \"fulana@deliveryapp.com\"\n}",
+      "form": []
+    },
+    "tests": []
   }
 ]
