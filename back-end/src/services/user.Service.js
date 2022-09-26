@@ -15,6 +15,14 @@ const userService = {
 
     return user;
   },
+
+  getAllSellers: async () => {
+    const users = await db.users.findAll({
+      where: { role: 'seller' },
+      attributes: { exclude: 'password' },
+    });
+    return users;
+  },
 };
 
 module.exports = userService;

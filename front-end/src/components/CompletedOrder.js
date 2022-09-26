@@ -1,17 +1,24 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import DeliveryAdress from './DeliveryAddress';
 import Table from './Table';
+import appContext from '../context/appContext';
 
 function CompletedOrder() {
+  const { total } = useContext(appContext);
   return (
     <div>
       <h1>Finalizar Pedido</h1>
-      <Table />
-      <button
-        type="button"
-        data-testId="customer_checkout__element-order-total-price"
-      >
-        Total:
-      </button>
+      <div>
+        <Table />
+        <span
+          type="button"
+          data-testid="customer_checkout__element-order-total-price"
+        >
+          {`Total: R$ ${total}`}
+        </span>
+      </div>
+
+      <DeliveryAdress />
     </div>
   );
 }

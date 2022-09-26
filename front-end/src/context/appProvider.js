@@ -7,7 +7,7 @@ function AppProvider({ children }) {
   const [total, setTotal] = useState(0);
 
   function sendToLocalStorage(item) {
-    localStorage.setItem('cart', item);
+    localStorage.setItem('cart', JSON.stringify(item));
   }
 
   function totalPriceCalc(newCart) {
@@ -67,8 +67,8 @@ function AppProvider({ children }) {
   function removeFromCart(id) {
     const copyProductsCart = [...cart];
 
-    const item = copyProductsCart.find((product) => product.id !== id);
-
+    const item = copyProductsCart.filter((product) => product.id !== id);
+    console.log(item);
     setCart(() => {
       sendToLocalStorage(item);
       return item;
