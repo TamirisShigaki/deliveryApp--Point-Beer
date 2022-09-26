@@ -1,19 +1,23 @@
+const { DATE } = require('sequelize');
 const db = require('../database/models');
 
 const saleService = {
   addSale: async (sale) => {
-    const { user_id, seller_id, total_price, delivery_address, delivery_number, sale_date, status } = sale;
+    const { userId, sellerId, totalPrice, deliveryAddress, deliveryNumber } = sale;
     
-    const sales = await db.sales.create({ user_id, seller_id, total_price, delivery_address, delivery_number, sale_date, status }); 
+    const sales = await db.sales.create({ userId, sellerId, totalPrice, deliveryAddress, deliveryNumber, status: 'pendente' }); 
     return sales;
   },
 
   getSalesProducts: async () => {
     const sales = await db.sales.findAll({
       include: [
-        { model: db.products, as: 'products', through: { attributes: [] } }
+        { model: db.users, as: 'user', attributes: { exclude: 'password' } },
+        { model: db.users, as: 'seller', attributes: { exclude: 'password' } },
       ],
     });
+
+    return sales;
   }
 };
 

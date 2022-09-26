@@ -17,12 +17,12 @@ module.exports = {
         type: Sequelize.DECIMAL(10,2),
         allowNull: false
       },
-      url_image: {
+      urlImage: {
         type: Sequelize.STRING,
         allowNull: false,
-        defaultValue: ''
+        field: 'url_image',
       }
-    }, {underscored: true});
+    });
   },
 
   async down (queryInterface, Sequelize) {
