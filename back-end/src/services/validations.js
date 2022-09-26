@@ -8,12 +8,13 @@ const schemas = {
       .messages({ 'string.email': 'Some required fields are missing' }),
   }),
 
-  // user: Joi.object().keys({
-  //   displayName: Joi.string().min(8).required(),
-  //   email: Joi.string().email().required(),
-  //   password: Joi.string().min(6).alphanum().required(),
-  //   image: Joi.string().required(),
-  // }),
+  sale: Joi.object().keys({
+    userId: Joi.number().required(),
+    sellerId: Joi.number().required(),
+    totalPrice: Joi.number().positive().required(),
+    deliveryAddress: Joi.string().required(),
+    deliveryNumber: Joi.number().min(1).required(),
+  }),
 };
 
 const validateSchema = (schema, dataToValidate) => {

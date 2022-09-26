@@ -1,7 +1,9 @@
 const saleService = require('../services/saleService');
+const { schemas, validateSchema } = require('../services/validations');
 
 const saleController = {
   addSale: async (req, res) => {
+    validateSchema(schemas.sale, req.body);
     const sale = await saleService.addSale(req.body);
 
     return res.status(201).json(sale);
