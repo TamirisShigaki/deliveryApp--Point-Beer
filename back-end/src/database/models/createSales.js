@@ -6,35 +6,39 @@ const createSales = (sequelize, DataTypes) => {
       allowNull: false,
       autoIncrement: true,
     },
-    user_id: {
+    userId: {
       type: DataTypes.INTEGER,
       foreignKey: true,
       onDelete: 'CASCADE',
       onUpdate: 'CASCADE'
     },
-    seller_id: {
+    sellerId: {
       type: DataTypes.INTEGER,
       foreignKey: true,
       onDelete: 'CASCADE',
       onUpdate: 'CASCADE'
     },
-    total_price: DataTypes.DECIMAL,
-    delivery_address: DataTypes.STRING,
-    delivery_number: DataTypes.STRING,
-    sale_date: DataTypes.DATE,
+    totalPrice: DataTypes.DECIMAL,
+    deliveryAddress: DataTypes.STRING,
+    deliveryNumber: DataTypes.STRING,
+    saleDate: {
+      type: DataTypes.DATE,
+      defaultValue: DataTypes.NOW,
+    },
     status: DataTypes.STRING
   }, {
     tableName: 'sales',
     timestamps: false,
+    underscored: true,
   });
 
-  // Sales.associate = (db) => {
-  //   Sales.belongsTo(db.User, { as: 'user', foreignKey: 'user_id' });
-  // }
+  Sales.associate = (db) => {
+    Sales.belongsTo(db.users, { as: 'user', foreignKey: 'user_id' });
+  }
 
-  // Sales.associate = (db) => {
-  //   Sales.belongsTo(db.User, { as: 'seller', foreignKey: 'seller_id' });
-  // }
+  Sales.associate = (db) => {
+    Sales.belongsTo(db.users, { as: 'seller', foreignKey: 'seller_id' });
+  }
 
   return Sales;
 };

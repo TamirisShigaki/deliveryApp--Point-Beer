@@ -8,7 +8,8 @@ const productService = {
       const err = new Error('products not found');
       err.name = 'NotFoundError';
       throw err;
-    }
+    } 
+
     return products;
   },
 };

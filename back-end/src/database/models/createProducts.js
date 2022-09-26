@@ -8,10 +8,11 @@ const createProducts = (sequelize, DataTypes) => {
     },
     name: DataTypes.STRING,
     price: DataTypes.DECIMAL(10,2),
-    url_image: DataTypes.STRING
+    urlImage: DataTypes.STRING,
   }, {
     tableName: 'products',
     timestamps: false,
+    underscored: true,
   });
 
   // Sales.associate = (db) => {
