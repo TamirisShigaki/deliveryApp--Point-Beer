@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { requestData } from '../services/requestUser';
+import { requestData, sendData } from '../services/requestUser';
 
 export default function DeliveryAdress() {
   const [sellers, setSellers] = useState([]);
   const [address, setAddress] = useState('');
   const [number, setNumber] = useState('');
+  const [sellerID, setSellerId] = useState('');
 
   useEffect(() => {
     async function getSellers() {
@@ -19,7 +20,21 @@ export default function DeliveryAdress() {
       setAddress(value);
     } else if (name === 'number') {
       setNumber(value);
+    } else if (name === 'seller') {
+      setSellerId(value);
     }
+  };
+
+  const handleClick = () => {
+    const body = {
+      user_id: JSON.parse(localStorage.getItem('user')).id,
+      seller_id: sellerID,
+      total_price: JSON.parse(localStorage.getItem('total')),
+      delivery_address: address,
+      delivery_number: number,
+    };
+    console.log(body);
+    sendData('/sales', body);
   };
 
   return (
@@ -33,6 +48,7 @@ export default function DeliveryAdress() {
             data-testid="customer_checkout__select-seller"
             id="seller"
             name="seller"
+            onChange={ handleChange }
           >
             {sellers.map(({ id, name }) => (
               <option
@@ -73,6 +89,7 @@ export default function DeliveryAdress() {
       <button
         type="button"
         data-testid="customer_checkout__input-addressNumber"
+        onClick={ handleClick }
       >
         FINALIZAR PEDIDO
       </button>
