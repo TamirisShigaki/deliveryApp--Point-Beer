@@ -1,6 +1,10 @@
-import React from 'react';
+import { useContext } from 'react';
+import PropTypes from 'prop-types';
+import appContext from '../context/appContext';
 
-function Table() {
+function Table({ id, title, qtd, price, subTotal, index }) {
+  const { removeFromCart } = useContext(appContext);
+
   return (
     <table className="table">
       <thead>
@@ -19,32 +23,33 @@ function Table() {
           <td
             data-testId="customer_checkout__element-order-table-item-number-[index]"
           >
-            { Item }
+            { index }
           </td>
           <td
             data-testId="customer_checkout__element-order-table-name-[index]"
           >
-            { Descrição }
+            { title }
           </td>
           <td
             data-testId="customer_checkout__element-order-table-quantity-[index]"
           >
-            { Quantidade }
+            { qtd }
           </td>
           <td
             data-testId="customer_checkout__element-order-table-unit-price-[index]"
           >
-            { ValorUnitário }
+            { price }
           </td>
           <td
             data-testId="customer_checkout__element-order-table-sub-total-[index]"
           >
-            { Subtotal }
+            { subTotal }
           </td>
           <td>
             <button
               type="button"
               data-testId="customer_checkout__element-order-table-remove-[index]"
+              onClick={ () => removeFromCart(id) }
             >
               Remover
             </button>
@@ -54,5 +59,14 @@ function Table() {
     </table>
   );
 }
+
+Table.propTypes = {
+  id: PropTypes.string,
+  subTotal: PropTypes.number,
+  index: PropTypes.number,
+  price: PropTypes.number,
+  title: PropTypes.string,
+  qtd: PropTypes.number,
+}.isRequired;
 
 export default Table;
