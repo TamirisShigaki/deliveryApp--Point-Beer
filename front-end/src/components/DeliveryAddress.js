@@ -1,6 +1,27 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { requestData } from '../services/requestUser';
 
-function DeliveryAdress() {
+export default function DeliveryAdress() {
+  const [sellers, setSellers] = useState([]);
+  const [address, setAddress] = useState('');
+  const [number, setNumber] = useState('');
+
+  useEffect(() => {
+    async function getSellers() {
+      const result = await requestData('/users/sellers');
+      setSellers(result);
+    }
+    getSellers();
+  }, []);
+
+  const handleChange = ({ target: { name, value } }) => {
+    if (name === 'address') {
+      setAddress(value);
+    } else if (name === 'number') {
+      setNumber(value);
+    }
+  };
+
   return (
     <div>
       <h1>Detalhes e Endereço para Entrega</h1>
@@ -13,17 +34,26 @@ function DeliveryAdress() {
             id="seller"
             name="seller"
           >
-            { VendedoraResponsavel }
+            {sellers.map(({ id, name }) => (
+              <option
+                key={ id }
+                value={ id }
+              >
+                {name}
+              </option>))}
+
           </select>
         </label>
 
-        <label htmlFor="adress">
+        <label htmlFor="address">
           Endereço
           <input
             type="text"
             data-testid="customer_checkout__input-address"
-            id="adress"
-            name="value"
+            id="address"
+            name="address"
+            value={ address }
+            onChange={ (event) => handleChange(event) }
           />
         </label>
 
@@ -34,6 +64,8 @@ function DeliveryAdress() {
             data-testid="customer_checkout__input-addressNumber"
             id="number"
             name="number"
+            value={ number }
+            onChange={ (event) => handleChange(event) }
           />
         </label>
       </form>
@@ -47,5 +79,3 @@ function DeliveryAdress() {
     </div>
   );
 }
-
-export default DeliveryAdress;
