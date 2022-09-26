@@ -9,7 +9,7 @@ function Products() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
   const { total } = useContext(appContext);
-  const totalNumber = `${total}`;
+  const totalPrice = `${total.toFixed(2)}`;
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -50,7 +50,7 @@ function Products() {
         <span
           data-testid="customer_products__checkout-bottom-value"
         >
-          {` ${totalNumber.replace(/\./, ',')}`}
+          {` ${totalPrice.replace(/\./, ',')}`}
         </span>
       </button>
     </main>
