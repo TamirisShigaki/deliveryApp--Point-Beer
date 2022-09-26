@@ -7,6 +7,12 @@ const userController = {
 
     return res.status(200).json(user);
   },
+
+  getAllSellers: async (req, res) => {
+    const users = await userService.getAllSellers();
+
+    return res.status(200).json(users);
+  },
 };
 
 module.exports = userController;
