@@ -2,8 +2,9 @@ import { useContext } from 'react';
 import PropTypes from 'prop-types';
 import appContext from '../context/appContext';
 
-function Table({ id, title, qtd, price, subTotal, index }) {
+function Table() {
   const { removeFromCart } = useContext(appContext);
+  const cart = JSON.parse(localStorage.getItem('cart'));
 
   return (
     <table className="table">
@@ -18,44 +19,45 @@ function Table({ id, title, qtd, price, subTotal, index }) {
         </tr>
       </thead>
 
-      <tbody>
-        <tr key={ id }>
-          <td
-            data-testId="customer_checkout__element-order-table-item-number-[index]"
-          >
-            { index }
-          </td>
-          <td
-            data-testId="customer_checkout__element-order-table-name-[index]"
-          >
-            { title }
-          </td>
-          <td
-            data-testId="customer_checkout__element-order-table-quantity-[index]"
-          >
-            { qtd }
-          </td>
-          <td
-            data-testId="customer_checkout__element-order-table-unit-price-[index]"
-          >
-            { price }
-          </td>
-          <td
-            data-testId="customer_checkout__element-order-table-sub-total-[index]"
-          >
-            { subTotal }
-          </td>
-          <td>
-            <button
-              type="button"
-              data-testId="customer_checkout__element-order-table-remove-[index]"
-              onClick={ () => removeFromCart(id) }
+      {cart.map(({ id, title, qtd, price, subTotal, index }) => (
+        <tbody key={ id }>
+          <tr>
+            <td
+              data-testid="customer_checkout__element-order-table-item-number-[index]"
             >
-              Remover
-            </button>
-          </td>
-        </tr>
-      </tbody>
+              { index }
+            </td>
+            <td
+              data-testid="customer_checkout__element-order-table-name-[index]"
+            >
+              { title }
+            </td>
+            <td
+              data-testid="customer_checkout__element-order-table-quantity-[index]"
+            >
+              { qtd }
+            </td>
+            <td
+              data-testid="customer_checkout__element-order-table-unit-price-[index]"
+            >
+              { `R$${Number(price).toFixed(2)}` }
+            </td>
+            <td
+              data-testid="customer_checkout__element-order-table-sub-total-[index]"
+            >
+              { `R$ ${Number(subTotal).toFixed(2)}` }
+            </td>
+            <td>
+              <button
+                type="button"
+                data-testid="customer_checkout__element-order-table-remove-[index]"
+                onClick={ () => removeFromCart(id) }
+              >
+                Remover
+              </button>
+            </td>
+          </tr>
+        </tbody>))}
     </table>
   );
 }
