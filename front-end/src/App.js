@@ -4,6 +4,7 @@ import './App.css';
 import Login from './pages/Login';
 import Products from './pages/Products';
 import Register from './pages/Register';
+import Orders from './pages/Orders';
 import AppProvider from './context/appProvider';
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
           <Route path="/login" element={ <Login /> } />
           <Route path="/customer/products" element={ <Products /> } />
           <Route path="/register" element={ <Register /> } />
+          <Route path="/customer/orders" element={ <Orders /> } />
         </Routes>
       </Router>
     </AppProvider>
