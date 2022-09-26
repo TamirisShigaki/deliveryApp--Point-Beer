@@ -6,6 +6,7 @@ export default function DeliveryAdress() {
   const [address, setAddress] = useState('');
   const [number, setNumber] = useState('');
   const [sellerID, setSellerId] = useState('');
+  const cart = JSON.parse(localStorage.getItem('cart'));
 
   useEffect(() => {
     async function getSellers() {
@@ -27,11 +28,12 @@ export default function DeliveryAdress() {
 
   const handleClick = () => {
     const body = {
-      user_id: JSON.parse(localStorage.getItem('user')).id,
-      seller_id: sellerID,
-      total_price: JSON.parse(localStorage.getItem('total')),
-      delivery_address: address,
-      delivery_number: number,
+      userId: JSON.parse(localStorage.getItem('user')).id,
+      sellerId: sellerID,
+      totalPrice: JSON.parse(localStorage.getItem('total')),
+      deliveryAddress: address,
+      deliveryNumber: number,
+      products: cart.map((product) => ({ id: product.id, qtd: product.qtd })),
     };
     console.log(body);
     sendData('/sales', body);
