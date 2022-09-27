@@ -23,7 +23,6 @@ const createSales = (sequelize, DataTypes) => {
     deliveryNumber: DataTypes.STRING,
     saleDate: {
       type: DataTypes.DATE,
-      defaultValue: DataTypes.NOW,
     },
     status: DataTypes.STRING
   }, {
