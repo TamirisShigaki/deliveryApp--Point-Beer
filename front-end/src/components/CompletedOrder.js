@@ -10,11 +10,11 @@ function CompletedOrder() {
       <h1>Finalizar Pedido</h1>
       <div>
         <Table />
+        Total: R$
         <span
-          type="button"
           data-testid="customer_checkout__element-order-total-price"
         >
-          {`Total: R$ ${total}`}
+          {(Number(total).toFixed(2)).replace(/\./, ',')}
         </span>
       </div>
 

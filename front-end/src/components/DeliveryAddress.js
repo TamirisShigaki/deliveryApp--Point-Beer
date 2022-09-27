@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { requestData } from '../services/requestUser';
 
 export default function DeliveryAdress() {
   const [sellers, setSellers] = useState([]);
   const [address, setAddress] = useState('');
   const [number, setNumber] = useState('');
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function getSellers() {
@@ -20,6 +22,11 @@ export default function DeliveryAdress() {
     } else if (name === 'number') {
       setNumber(value);
     }
+  };
+
+  const submitOrder = () => {
+    // aqui vai o método POST que deve retornar também o ID do pedido para o navigate
+    navigate(`/customer/orders/${id}`);
   };
 
   return (
@@ -61,7 +68,7 @@ export default function DeliveryAdress() {
           Número
           <input
             type="text"
-            data-testid="customer_checkout__input-addressNumber"
+            data-testid="customer_checkout__input-address-number"
             id="number"
             name="number"
             value={ number }
@@ -72,7 +79,8 @@ export default function DeliveryAdress() {
 
       <button
         type="button"
-        data-testid="customer_checkout__input-addressNumber"
+        data-testid="customer_checkout__button-submit-order"
+        onClick={ submitOrder }
       >
         FINALIZAR PEDIDO
       </button>

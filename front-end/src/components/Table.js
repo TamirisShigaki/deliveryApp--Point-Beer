@@ -19,38 +19,50 @@ function Table() {
         </tr>
       </thead>
 
-      {cart.map(({ id, title, qtd, price, subTotal, index }) => (
+      {cart.map(({ id, title, qtd, price, subTotal }, index) => (
         <tbody key={ id }>
           <tr>
             <td
-              data-testid="customer_checkout__element-order-table-item-number-[index]"
+              data-testid={
+                `customer_checkout__element-order-table-item-number-${index}`
+              }
             >
-              { index }
+              { index + 1 }
             </td>
             <td
-              data-testid="customer_checkout__element-order-table-name-[index]"
+              data-testid={ `customer_checkout__element-order-table-name-${index}` }
             >
               { title }
             </td>
             <td
-              data-testid="customer_checkout__element-order-table-quantity-[index]"
+              data-testid={ `customer_checkout__element-order-table-quantity-${index}` }
             >
               { qtd }
             </td>
-            <td
-              data-testid="customer_checkout__element-order-table-unit-price-[index]"
-            >
-              { `R$${Number(price).toFixed(2)}` }
+            <td>
+              R$
+              <span
+                data-testid={
+                  `customer_checkout__element-order-table-unit-price-${index}`
+                }
+              >
+                {(Number(price).toFixed(2)).replace(/\./, ',')}
+              </span>
             </td>
-            <td
-              data-testid="customer_checkout__element-order-table-sub-total-[index]"
-            >
-              { `R$ ${Number(subTotal).toFixed(2)}` }
+            <td>
+              R$
+              <span
+                data-testid={
+                  `customer_checkout__element-order-table-sub-total-${index}`
+                }
+              >
+                {(Number(subTotal).toFixed(2)).replace(/\./, ',')}
+              </span>
             </td>
             <td>
               <button
                 type="button"
-                data-testid="customer_checkout__element-order-table-remove-[index]"
+                data-testid={ `customer_checkout__element-order-table-remove-${index}` }
                 onClick={ () => removeFromCart(id) }
               >
                 Remover
@@ -65,7 +77,6 @@ function Table() {
 Table.propTypes = {
   id: PropTypes.string,
   subTotal: PropTypes.number,
-  index: PropTypes.number,
   price: PropTypes.number,
   title: PropTypes.string,
   qtd: PropTypes.number,

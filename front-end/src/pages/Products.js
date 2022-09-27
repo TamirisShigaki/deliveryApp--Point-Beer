@@ -30,7 +30,7 @@ function Products() {
       <Header />
       <div>
         { !loading ? <span>Carregando...</span>
-          : products.map(({ id, name, price, url_image: urlImage }) => (
+          : products.map(({ id, name, price, urlImage }) => (
             <Card
               data-testid={ `customer_products__element-card-title-${id}` }
               key={ id }
