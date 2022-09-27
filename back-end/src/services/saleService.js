@@ -13,8 +13,6 @@ const saleService = {
         userId, sellerId, totalPrice, deliveryAddress, deliveryNumber, status: 'Pendente',
       }, { transaction: t });
 
-      // const products = await db.products.create({ title, content, userId: id }, { transaction: t });    
-      
       const salesProducts = products
         .map((product) => ({ saleId: sales.id, productId: product.id, quantity: product.qtd }));
       await db.salesProducts.bulkCreate(salesProducts, { transaction: t });
@@ -43,6 +41,7 @@ const saleService = {
       include: [
         { model: db.users, as: 'user', attributes: { exclude: 'password' } },
         { model: db.users, as: 'seller', attributes: { exclude: 'password' } },
+        // { model: db.salesProducts, as: 'salesProducts', attributes: [] },
       ],
     });
 

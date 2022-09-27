@@ -8,6 +8,7 @@ const registerRouter = require('../routes/registerRouter');
 const productRouter = require('../routes/productRouter');
 const userRouter = require('../routes/userRouter');
 const saleRouter = require('../routes/saleRouter');
+const salesProductsRouter = require('../routes/salesProduct');
 
 const app = express();
 
@@ -20,6 +21,7 @@ app.use('/register', registerRouter);
 app.use('/products', productRouter);
 app.use('/users', userRouter);
 app.use('/sales', saleRouter);
+app.use('/sales/products', salesProductsRouter);
 
 app.use(errorMiddleware);
 
