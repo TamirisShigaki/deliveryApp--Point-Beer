@@ -25,7 +25,8 @@ function Orders() {
             <OrderCard
               key={ order.id }
               order={ order }
-            />))}
+            />
+          ))}
       </div>
     </main>
 

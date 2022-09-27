@@ -7,7 +7,7 @@ export default function DeliveryAdress() {
   const [address, setAddress] = useState('');
   const [number, setNumber] = useState('');
   const navigate = useNavigate();
-  const [sellerID, setSellerId] = useState('');
+  const [sellerID, setSellerId] = useState(2);
   const cart = JSON.parse(localStorage.getItem('cart'));
 
   useEffect(() => {
@@ -28,7 +28,7 @@ export default function DeliveryAdress() {
     }
   };
 
-  const handleClick = () => {
+  const handleClick = async () => {
     const body = {
       userId: JSON.parse(localStorage.getItem('user')).id,
       sellerId: sellerID,
@@ -37,8 +37,8 @@ export default function DeliveryAdress() {
       deliveryNumber: number,
       products: cart.map((product) => ({ id: product.id, qtd: product.qtd })),
     };
-    console.log(body);
-    sendData('/sales', body);
+    const id = await sendData('/sales', body);
+    console.log(id);
     navigate(`/customer/orders/${id}`);
   };
 

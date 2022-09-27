@@ -7,23 +7,20 @@ const sequelize = new Sequelize(config.development);
 const saleService = {
   addSale: async (sale) => {
     const { userId, sellerId, totalPrice, deliveryAddress, deliveryNumber, products } = sale;
-
+    let sales = {};
     const result = await sequelize.transaction(async (t) => {
-      const sales = await db.sales.create({
-        userId, sellerId, totalPrice, deliveryAddress, deliveryNumber, status: 'pendente',
+      sales = await db.sales.create({
+        userId, sellerId, totalPrice, deliveryAddress, deliveryNumber, status: 'Pendente',
       }, { transaction: t });
 
-      // const products = await db.products.create({ title, content, userId: id }, { transaction: t });
-      const saleId = sales.id;
-
-      const salesProducts = JSON.parse(products)
-        .map((product) => ({ saleId, productId: product.id, quantity: product.qtd }));
-      console.log(salesProducts);
+      // const products = await db.products.create({ title, content, userId: id }, { transaction: t });    
+      
+      const salesProducts = products
+        .map((product) => ({ saleId: sales.id, productId: product.id, quantity: product.qtd }));
       await db.salesProducts.bulkCreate(salesProducts, { transaction: t });
-      return sales;
     });
-
-    return result;
+    console.log(result);
+    return sales.id;
   },
 
   create: async (data) => {

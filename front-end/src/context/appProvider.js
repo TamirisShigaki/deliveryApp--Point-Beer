@@ -71,6 +71,7 @@ function AppProvider({ children }) {
     const item = copyProductsCart.filter((product) => product.id !== id);
     console.log(item);
     setCart(() => {
+      totalPriceCalc(item);
       sendToLocalStorage(item);
       return item;
     });

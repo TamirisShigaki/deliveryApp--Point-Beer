@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import DeliveryAdress from './DeliveryAddress';
+import appContext from '../context/appContext';
 import Table from './Table';
 
 function CompletedOrder() {
-  const total = JSON.parse(localStorage.getItem('total'));
+  const { total } = useContext(appContext);
+  const totalPrice = `${total.toFixed(2)}`;
   return (
     <div>
       <h1>Finalizar Pedido</h1>
@@ -13,7 +15,7 @@ function CompletedOrder() {
         <span
           data-testid="customer_checkout__element-order-total-price"
         >
-          {(Number(total).toFixed(2)).replace(/\./, ',')}
+          {` ${totalPrice.replace(/\./, ',')}`}
         </span>
       </div>
 
