@@ -9,7 +9,6 @@ const productRouter = require('../routes/productRouter');
 const userRouter = require('../routes/userRouter');
 const saleRouter = require('../routes/saleRouter');
 
-
 const app = express();
 
 app.use(express.json());

@@ -13,7 +13,7 @@ const saleController = {
     const sales = await saleService.getSalesProducts();
 
     return res.status(200).json(sales);
-  }
+  },
 };
 
 module.exports = saleController;

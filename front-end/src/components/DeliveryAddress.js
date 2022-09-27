@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { requestData } from '../services/requestUser';
+import { requestData, sendData } from '../services/requestUser';
 
 export default function DeliveryAdress() {
   const [sellers, setSellers] = useState([]);
   const [address, setAddress] = useState('');
   const [number, setNumber] = useState('');
   const navigate = useNavigate();
+  const [sellerID, setSellerId] = useState('');
+  const cart = JSON.parse(localStorage.getItem('cart'));
 
   useEffect(() => {
     async function getSellers() {
@@ -21,12 +23,9 @@ export default function DeliveryAdress() {
       setAddress(value);
     } else if (name === 'number') {
       setNumber(value);
+    } else if (name === 'seller') {
+      setSellerId(value);
     }
-  };
-
-  const submitOrder = () => {
-    // aqui vai o método POST que deve retornar também o ID do pedido para o navigate
-    navigate(`/customer/orders/${id}`);
   };
 
   return (
@@ -40,6 +39,7 @@ export default function DeliveryAdress() {
             data-testid="customer_checkout__select-seller"
             id="seller"
             name="seller"
+            onChange={ handleChange }
           >
             {sellers.map(({ id, name }) => (
               <option
@@ -79,8 +79,7 @@ export default function DeliveryAdress() {
 
       <button
         type="button"
-        data-testid="customer_checkout__button-submit-order"
-        onClick={ submitOrder }
+        data-testid="customer_checkout__input-addressNumber"
       >
         FINALIZAR PEDIDO
       </button>

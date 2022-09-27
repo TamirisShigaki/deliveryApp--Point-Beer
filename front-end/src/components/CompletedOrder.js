@@ -1,10 +1,9 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import DeliveryAdress from './DeliveryAddress';
 import Table from './Table';
-import appContext from '../context/appContext';
 
 function CompletedOrder() {
-  const { total } = useContext(appContext);
+  const total = JSON.parse(localStorage.getItem('total'));
   return (
     <div>
       <h1>Finalizar Pedido</h1>

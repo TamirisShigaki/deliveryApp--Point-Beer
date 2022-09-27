@@ -17,6 +17,7 @@ function AppProvider({ children }) {
       return acc;
     }, 0);
     setTotal(totalPrice);
+    localStorage.setItem('total', JSON.stringify(totalPrice));
   }
 
   function changeProductQtd(id, title, price, qtd) {
