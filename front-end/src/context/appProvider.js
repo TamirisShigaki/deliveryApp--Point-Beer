@@ -5,6 +5,7 @@ import AppContext from './appContext';
 function AppProvider({ children }) {
   const [cart, setCart] = useState([]);
   const [total, setTotal] = useState(0);
+  const [isLogged, setIsLogged] = useState(false);
 
   function sendToLocalStorage(item) {
     localStorage.setItem('cart', JSON.stringify(item));
@@ -37,8 +38,6 @@ function AppProvider({ children }) {
     });
     // setCart(copyProductsCart);
   }
-  console.log(total);
-  console.log(cart);
 
   function removeProductToCart(id, qtd) {
     const copyProductsCart = [...cart];
@@ -93,6 +92,8 @@ function AppProvider({ children }) {
     clearCart,
     removeFromCart,
     sendToLocalStorage,
+    setIsLogged,
+    isLogged,
   }), [cart]);
 
   return (
