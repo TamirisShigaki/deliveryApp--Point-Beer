@@ -44,6 +44,7 @@ module.exports = {
       },
       saleDate: {
         type: Sequelize.DATE,
+        valorDefault: Sequelize.NOW,
         allowNull: false,
         field: 'sale_date',
       },
