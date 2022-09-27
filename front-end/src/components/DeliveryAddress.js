@@ -28,6 +28,20 @@ export default function DeliveryAdress() {
     }
   };
 
+  const handleClick = () => {
+    const body = {
+      userId: JSON.parse(localStorage.getItem('user')).id,
+      sellerId: sellerID,
+      totalPrice: JSON.parse(localStorage.getItem('total')),
+      deliveryAddress: address,
+      deliveryNumber: number,
+      products: cart.map((product) => ({ id: product.id, qtd: product.qtd })),
+    };
+    console.log(body);
+    sendData('/sales', body);
+    navigate(`/customer/orders/${id}`);
+  };
+
   return (
     <div>
       <h1>Detalhes e Endereço para Entrega</h1>
@@ -79,7 +93,8 @@ export default function DeliveryAdress() {
 
       <button
         type="button"
-        data-testid="customer_checkout__input-addressNumber"
+        data-testid="customer_checkout__button-submit-order"
+        onClick={ handleClick }
       >
         FINALIZAR PEDIDO
       </button>
