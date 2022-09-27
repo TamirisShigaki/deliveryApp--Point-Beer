@@ -23,12 +23,12 @@ function Table() {
         <tbody key={ id }>
           <tr>
             <td
-              data-testid="customer_checkout__element-order-table-item-number-[index]"
+              data-testid={ `customer_checkout__element-order-table-item-number-${id}` }
             >
               { index }
             </td>
             <td
-              data-testid="customer_checkout__element-order-table-name-[index]"
+              data-testid={ `customer_checkout__element-order-table-name-${id}` }
             >
               { title }
             </td>
