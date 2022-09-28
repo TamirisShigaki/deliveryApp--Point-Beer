@@ -10,8 +10,9 @@ function StatusOrder({ seller, order }) {
       <ul>
         <li
           data-testid={
-            `${seller ? 'seller' : 'customer'}
-            _order_details__element-order-details-label-order-id`
+            `${seller
+              ? 'seller'
+              : 'customer'}_order_details__element-order-details-label-order-id`
           }
         >
           {`Pedido ${order.id}`}
@@ -19,8 +20,9 @@ function StatusOrder({ seller, order }) {
         {!seller && (
           <li
             data-testid={
-              `${seller ? 'seller' : 'customer'}
-                    _order_details__element-order-details-label-seller-name`
+              `${seller
+                ? 'seller'
+                : 'customer'}_order_details__element-order-details-label-seller-name`
             }
           >
             {`P.Vend: ${order.seller?.name}`}
@@ -28,16 +30,18 @@ function StatusOrder({ seller, order }) {
         )}
         <li
           data-testid={
-            `${seller ? 'seller' : 'customer'}
-            _order_details__element-order-details-label-order-date`
+            `${seller
+              ? 'seller'
+              : 'customer'}_order_details__element-order-details-label-order-date`
           }
         >
           {moment(order.saleDate).format('DD/MM/yyyy')}
         </li>
         <li
           data-testid={
-            `${seller ? 'seller' : 'customer'}
-            _order_details__element-order-details-label-delivery-status-
+            `${seller
+              ? 'seller'
+              : 'customer'}_order_details__element-order-details-label-delivery-status-
             ${order.id}`
           }
         >
@@ -48,8 +52,7 @@ function StatusOrder({ seller, order }) {
         <li>
           <button
             data-testid={
-              `${seller ? 'seller' : 'customer'}
-            _order_details__button-delivery-check`
+              `${seller ? 'seller' : 'customer'}_order_details__button-delivery-check`
             }
             type="button"
             onClick={ () => setChecked(!checked) }
