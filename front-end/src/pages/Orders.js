@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import Header from '../components/Header';
 import OrderCard from '../components/OrderCard';
 import { requestData } from '../services/requestUser';
 
-function Orders() {
+function Orders({ seller }) {
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -19,19 +20,23 @@ function Orders() {
 
   return (
     <main>
-      <Header />
+      <Header seller={ seller } />
       <div>
         { !loading ? <span>Carregando...</span>
           : orders.map((order) => (
             <OrderCard
+              seller={ seller }
               key={ order.id }
               order={ order }
             />
           ))}
       </div>
     </main>
-
   );
 }
+
+Orders.propTypes = {
+  seller: PropTypes.boolean,
+}.isRequired;
 
 export default Orders;

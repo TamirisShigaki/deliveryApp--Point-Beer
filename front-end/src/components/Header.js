@@ -1,7 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { useNavigate, Link } from 'react-router-dom';
 
-function Header() {
+function Header({ seller }) {
   const user = localStorage.getItem('user');
   const navigate = useNavigate();
 
@@ -17,11 +18,13 @@ function Header() {
           <li data-testid="customer_products__element-navbar-link-products">
             PRODUTOS
           </li>
-          <Link to="/customer/orders">
-            <li data-testid="customer_products__element-navbar-link-orders">
-              MEUS PEDIDOS
-            </li>
-          </Link>
+          {!seller && (
+            <Link to="/customer/orders">
+              <li data-testid="customer_products__element-navbar-link-orders">
+                MEUS PEDIDOS
+              </li>
+            </Link>
+          )}
           <li data-testid="customer_products__element-navbar-user-full-name">
             {JSON.parse(user).name}
           </li>
@@ -39,5 +42,9 @@ function Header() {
     </header>
   );
 }
+
+Header.propTypes = {
+  seller: PropTypes.boolean,
+}.isRequired;
 
 export default Header;
