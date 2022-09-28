@@ -5,6 +5,11 @@ import AppContext from './appContext';
 function AppProvider({ children }) {
   const [cart, setCart] = useState([]);
   const [total, setTotal] = useState(0);
+  const [isLogged, setIsLogged] = useState(false);
+
+  function sendToLocalStorage(item) {
+    localStorage.setItem('cart', JSON.stringify(item));
+  }
 
   function totalPriceCalc(newCart) {
     const copyProductsCart = [...newCart];
@@ -13,6 +18,7 @@ function AppProvider({ children }) {
       return acc;
     }, 0);
     setTotal(totalPrice);
+    localStorage.setItem('total', JSON.stringify(totalPrice));
   }
 
   function changeProductQtd(id, title, price, qtd) {
@@ -27,12 +33,11 @@ function AppProvider({ children }) {
 
     setCart(() => {
       totalPriceCalc(copyProductsCart);
+      sendToLocalStorage(copyProductsCart);
       return copyProductsCart;
     });
     // setCart(copyProductsCart);
   }
-  console.log(total);
-  console.log(cart);
 
   function removeProductToCart(id, qtd) {
     const copyProductsCart = [...cart];
@@ -42,21 +47,40 @@ function AppProvider({ children }) {
     if (item && qtd >= 1) {
       item.qtd = qtd;
       item.subTotal = qtd * item.price;
-      setCart(copyProductsCart);
+      setCart(() => {
+        sendToLocalStorage(copyProductsCart);
+        return copyProductsCart;
+      });
     } else {
       const arrayFiltered = copyProductsCart.filter(
         (product) => product.id !== id,
       );
       setCart(() => {
         totalPriceCalc(arrayFiltered);
+        sendToLocalStorage(copyProductsCart);
         return arrayFiltered;
       });
       // setCart(arrayFiltered);
     }
   }
 
+  function removeFromCart(id) {
+    const copyProductsCart = [...cart];
+
+    const item = copyProductsCart.filter((product) => product.id !== id);
+    console.log(item);
+    setCart(() => {
+      totalPriceCalc(item);
+      sendToLocalStorage(item);
+      return item;
+    });
+  }
+
   function clearCart() {
-    setCart([]);
+    setCart(() => {
+      sendToLocalStorage([]);
+      return [];
+    });
   }
 
   const contextValue = useMemo(() => ({
@@ -66,6 +90,10 @@ function AppProvider({ children }) {
     changeProductQtd,
     removeProductToCart,
     clearCart,
+    removeFromCart,
+    sendToLocalStorage,
+    setIsLogged,
+    isLogged,
   }), [cart]);
 
   return (

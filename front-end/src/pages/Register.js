@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { requestLogin } from '../services/requestUser';
+import { sendData } from '../services/requestUser';
 
 function Register() {
   const [username, setUsername] = useState('');
@@ -42,7 +42,7 @@ function Register() {
   const register = async (event) => {
     event.preventDefault();
     try {
-      await requestLogin('/register', { username, email, password });
+      await sendData('/register', { username, email, password });
 
       setIsRegistered(true);
       navigate('/customer/products');

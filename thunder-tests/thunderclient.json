@@ -8,12 +8,12 @@
     "method": "POST",
     "sortNum": 10000,
     "created": "2022-09-21T18:46:45.632Z",
-    "modified": "2022-09-22T01:18:05.449Z",
+    "modified": "2022-09-26T17:56:01.497Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n  \"email\": \"dm@deliveryapp.com\",\n  \"password\": \"--adm2@21!!--\"\n}",
+      "raw": "{\n  \"email\": \"adm@deliveryapp.com\",\n  \"password\": \"--adm2@21!!--\"\n}",
       "form": []
     },
     "tests": []
@@ -35,13 +35,13 @@
   {
     "_id": "15e89000-6fe0-4e80-9e6b-ae91ff7125d9",
     "colId": "afaaf771-e83f-40b7-82b8-f6618fecf24a",
-    "containerId": "",
+    "containerId": "aa91d2ef-441a-4806-ae50-d2cc669d47f0",
     "name": "get user",
     "url": "localhost:3001/users",
     "method": "POST",
-    "sortNum": 30000,
+    "sortNum": 10000,
     "created": "2022-09-22T21:34:59.307Z",
-    "modified": "2022-09-22T21:57:55.526Z",
+    "modified": "2022-09-26T18:53:03.382Z",
     "headers": [],
     "params": [],
     "body": {
@@ -49,6 +49,67 @@
       "raw": "{\n  \"email\": \"fulana@deliveryapp.com\"\n}",
       "form": []
     },
+    "tests": []
+  },
+  {
+    "_id": "5bae3b20-6c7c-4076-9641-64dbb01c2775",
+    "colId": "afaaf771-e83f-40b7-82b8-f6618fecf24a",
+    "containerId": "aa91d2ef-441a-4806-ae50-d2cc669d47f0",
+    "name": "get sellers",
+    "url": "localhost:3001/users/sellers",
+    "method": "GET",
+    "sortNum": 40000,
+    "created": "2022-09-26T18:53:09.565Z",
+    "modified": "2022-09-26T18:53:33.077Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "c97314d1-cec6-4ff3-b0ce-383f337fb1f8",
+    "colId": "afaaf771-e83f-40b7-82b8-f6618fecf24a",
+    "containerId": "6ef5f999-32f4-475a-bac0-2bf2423cf349",
+    "name": "post Sales",
+    "url": "localhost:3001/sales",
+    "method": "POST",
+    "sortNum": 50000,
+    "created": "2022-09-26T22:08:45.441Z",
+    "modified": "2022-09-26T23:21:52.122Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\r\n    \"userId\": 3,\r\n    \"sellerId\": 2,\r\n    \"totalPrice\": 100.00,\r\n    \"deliveryAddress\": \"Rua das Flores\",\r\n    \"deliveryNumber\": 13,\r\n    \"products\": [{\"id\":2, \"qtd\":3}]\r\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "245df401-5096-4512-84eb-38549e8f58fa",
+    "colId": "afaaf771-e83f-40b7-82b8-f6618fecf24a",
+    "containerId": "6ef5f999-32f4-475a-bac0-2bf2423cf349",
+    "name": "get sale by id",
+    "url": "localhost:3001/sales/products/1",
+    "method": "GET",
+    "sortNum": 60000,
+    "created": "2022-09-27T18:01:19.850Z",
+    "modified": "2022-09-27T18:01:43.461Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "17bcc5da-e87d-4d54-8efe-55d662966974",
+    "colId": "afaaf771-e83f-40b7-82b8-f6618fecf24a",
+    "containerId": "6ef5f999-32f4-475a-bac0-2bf2423cf349",
+    "name": "get sales",
+    "url": "localhost:3001/sales",
+    "method": "GET",
+    "sortNum": 70000,
+    "created": "2022-09-27T19:01:09.763Z",
+    "modified": "2022-09-27T19:01:26.585Z",
+    "headers": [],
+    "params": [],
     "tests": []
   }
 ]

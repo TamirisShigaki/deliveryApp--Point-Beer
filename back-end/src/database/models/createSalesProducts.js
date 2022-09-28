@@ -1,13 +1,13 @@
 const createSalesProducts = (sequelize, DataTypes) => {
   const SalesProducts = sequelize.define('salesProducts', {
-    sale_id: {
+    saleId: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       foreignKey: true,
       onDelete: 'CASCADE',
       onUpdate: 'CASCADE'
     },
-    product_id: {
+    productId: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       foreignKey: true,
@@ -16,8 +16,9 @@ const createSalesProducts = (sequelize, DataTypes) => {
     },
     quantity: DataTypes.INTEGER,
   }, {
-    tableName: 'salesProducts',
+    tableName: 'sales_products',
     timestamps: false,
+    underscored: true,
   });
 
   SalesProducts.associate = (db) => {
