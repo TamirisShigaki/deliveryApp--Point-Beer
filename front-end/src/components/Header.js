@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 function Header() {
   const user = localStorage.getItem('user');
@@ -17,9 +17,11 @@ function Header() {
           <li data-testid="customer_products__element-navbar-link-products">
             PRODUTOS
           </li>
-          <li data-testid="customer_products__element-navbar-link-orders">
-            MEUS PEDIDOS
-          </li>
+          <Link to="/customer/orders">
+            <li data-testid="customer_products__element-navbar-link-orders">
+              MEUS PEDIDOS
+            </li>
+          </Link>
           <li data-testid="customer_products__element-navbar-user-full-name">
             {JSON.parse(user).name}
           </li>
