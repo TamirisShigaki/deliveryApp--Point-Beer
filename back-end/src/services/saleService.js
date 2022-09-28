@@ -29,7 +29,22 @@ const saleService = {
     return sales.id;
   },
 
-  getSalesProducts: async () => {
+  create: async (data) => {
+    const { id, categoryIds, title, content } = data;
+
+    const result = await sequelize.transaction(async (t) => {
+      const post = await db.BlogPost.create({ title, content, userId: id }, { transaction: t });
+
+      const postId = post.id;
+      const postCategory = categoryIds.map((item) => ({ categoryId: item, postId }));
+
+      await db.PostCategory.bulkCreate(postCategory, { transaction: t });
+      return post;
+    });
+    return result;
+  },
+
+  getSales: async () => {
     const sales = await db.sales.findAll({
       include: [
         { model: db.users, as: 'user', attributes: { exclude: 'password' } },
@@ -39,6 +54,22 @@ const saleService = {
     });
 
     return sales;
+  },
+
+  getSaleById: async (id) => {
+    const sale = await db.sales.findOne({
+      where: { id },
+      include: [
+      { model: db.users, as: 'user', attributes: { exclude: 'password' } },
+      { model: db.users, as: 'seller', attributes: { exclude: 'password' } },
+    ] });
+    console.log(sale);
+    if (!sale) {
+      const e = new Error('Sale does note exist');
+      e.name = 'NotFoundError';
+      throw e;
+    }
+    return sale;
   },
 };
 

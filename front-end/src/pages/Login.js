@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-// import appContext from '../context/appContext';
 import { sendData, setToken } from '../services/requestUser';
 
 function Login() {
@@ -8,19 +7,8 @@ function Login() {
   const [password, setPassword] = useState('');
   const [buttonDisabled, setButtonDisabled] = useState(true);
   const [failedTryLogin, setFailedTryLogin] = useState(false);
-  // const { isLogged, setIsLogged } = useContext(appContext);
-  // const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')));
 
   const navigate = useNavigate();
-
-  // const redirectLogin = (user) => {
-  //   console.log(isLogged, user);
-  //   if (isLogged && user.role === 'customer') {
-  //     navigate('/customer/products');
-  //   } else {
-  //     navigate('/login');
-  //   }
-  // };
 
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem('user'));

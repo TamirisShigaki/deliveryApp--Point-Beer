@@ -10,7 +10,7 @@ function CompletedOrder() {
     <div>
       <h1>Finalizar Pedido</h1>
       <div>
-        <Table />
+        <Table button />
         Total: R$
         <span
           data-testid="customer_checkout__element-order-total-price"
