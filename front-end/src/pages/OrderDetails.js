@@ -9,7 +9,7 @@ import { requestData } from '../services/requestUser';
 function OrderDetails({ seller }) {
   const { id } = useParams();
   const [order, setOrder] = useState([]);
-  console.log(order);
+  console.log(id);
   useEffect(() => {
     async function getOrders() {
       const result = await requestData(`/sales/${id}`);
@@ -28,7 +28,9 @@ function OrderDetails({ seller }) {
       <div>
         Total: R$
         <span
-          data-testid="customer_order_details__element-order-total-price"
+          data-testid={
+            `${seller ? 'seller' : 'customer'}_order_details__element-order-total-price`
+          }
         >
           {` ${total?.replace(/\./, ',')}`}
         </span>
