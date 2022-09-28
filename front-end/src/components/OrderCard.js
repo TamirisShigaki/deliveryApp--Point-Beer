@@ -9,7 +9,7 @@ function OrderCard({ order: { id, status, saleDate, totalPrice } }) {
     const four = 4;
     const eight = 8;
     const day = date.substr(eight, 2);
-    const year = date.substr(2, 2);
+    const year = date.substr(0, four);
     const month = date.substr(four + 1, 2);
     return `${day}/${month}/${year}`;
   };
@@ -40,7 +40,7 @@ function OrderCard({ order: { id, status, saleDate, totalPrice } }) {
       <span
         data-testid={ `customer_orders__element-card-price-${id}` }
       >
-        {totalPrice}
+        {totalPrice.replace(/\./, ',')}
       </span>
     </button>
   );
