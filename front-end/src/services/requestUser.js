@@ -28,4 +28,8 @@ export const sendData = async (endpoint, body) => {
   return data;
 };
 
+export const deleteUser = async (endpoint) => {
+  await api.delete(endpoint);
+};
+
 export default api;

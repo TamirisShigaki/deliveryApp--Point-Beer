@@ -8,6 +8,7 @@ import Orders from './pages/Orders';
 import AppProvider from './context/appProvider';
 import CompletedOrder from './components/CompletedOrder';
 import OrderDetails from './pages/OrderDetails';
+import AdminManage from './pages/AdminManage';
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
           />
           <Route path="/seller/orders/:id" element={ <OrderDetails seller /> } />
           <Route path="/customer/checkout" element={ <CompletedOrder /> } />
+          <Route path="/admin/manage" element={ <AdminManage /> } />
         </Routes>
       </Router>
     </AppProvider>

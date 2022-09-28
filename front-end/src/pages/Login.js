@@ -12,12 +12,13 @@ function Login() {
 
   const redirectUser = () => {
     const user = JSON.parse(localStorage.getItem('user'));
-    console.log(user);
     if (user) {
       if (user.role === 'customer') {
         navigate('/customer/products');
       } else if (user.role === 'seller') {
         navigate('/seller/orders');
+      } else if (user.role === 'administrator') {
+        navigate('/admin/manage');
       }
     }
   };

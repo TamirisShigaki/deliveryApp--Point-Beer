@@ -21,15 +21,15 @@ const userController = {
   },
 
   addUser: async (req, res) => {
-    const { username, email, newPassword, role } = req.body;
-    const user = await userService.addUser({ username, email, newPassword, role });
+    const { username, email, password, role } = req.body;
+    const user = await userService.addUser({ username, email, password, role });
 
     return res.status(201).json(user);
   },
 
   deleteUserById: async (req, res) => {
-    const { id } = req.params;
-    await userService.deleteUserById(id);
+    const { email } = req.params;
+    await userService.deleteUserById(email);
     
     return res.status(204).end();
   },
