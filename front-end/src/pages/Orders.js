@@ -10,6 +10,7 @@ function Orders() {
   useEffect(() => {
     async function getOrders() {
       const result = await requestData('/sales');
+      console.log('sales', result);
       setOrders(result);
       setLoading(true);
     }

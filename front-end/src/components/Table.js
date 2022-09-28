@@ -2,9 +2,10 @@ import { useContext } from 'react';
 import PropTypes from 'prop-types';
 import appContext from '../context/appContext';
 
-function Table() {
+function Table(props) {
   const { removeFromCart } = useContext(appContext);
   const cart = JSON.parse(localStorage.getItem('cart'));
+  const { button } = props;
 
   return (
     <table className="table">
@@ -15,7 +16,7 @@ function Table() {
           <th>Quantidade</th>
           <th>Valor Unitário</th>
           <th>Sub-total</th>
-          <th>Remover Item</th>
+          { button && <th>Remover Item</th> }
         </tr>
       </thead>
 
@@ -60,13 +61,15 @@ function Table() {
               </span>
             </td>
             <td>
-              <button
-                type="button"
-                data-testid={ `customer_checkout__element-order-table-remove-${index}` }
-                onClick={ () => removeFromCart(id) }
-              >
-                Remover
-              </button>
+              { button && (
+                <button
+                  type="button"
+                  data-testid={ `customer_checkout__element-order-table-remove-${index}` }
+                  onClick={ () => removeFromCart(id) }
+                >
+                  Remover
+                </button>
+              )}
             </td>
           </tr>
         </tbody>))}
