@@ -13,12 +13,17 @@ export const requestData = async (endpoint) => {
   return data;
 };
 
-export const requestUser = async (endpoint, email) => {
-  const { data } = await api.post(endpoint, email);
-  return data;
-};
+// export const requestUser = async (endpoint, email) => { // pq duas se são a mesma coisa? Podemos usar uma só generica?
+//   const { data } = await api.post(endpoint, email);
+//   return data;
+// };
 
-export const requestLogin = async (endpoint, body) => {
+// export const requestLogin = async (endpoint, body) => {
+//   const { data } = await api.post(endpoint, body);
+//   return data;
+// };
+
+export const sendData = async (endpoint, body) => {
   const { data } = await api.post(endpoint, body);
   return data;
 };

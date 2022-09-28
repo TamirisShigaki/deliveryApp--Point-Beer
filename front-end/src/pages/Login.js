@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { requestLogin, requestUser, setToken } from '../services/requestUser';
+import { sendData, setToken } from '../services/requestUser';
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -32,10 +32,11 @@ function Login() {
   const login = async (event) => {
     event.preventDefault();
     try {
-      const { token } = await requestLogin('/login', { email, password });
+      const { token } = await sendData('/login', { email, password });
       setToken(token);
-      const { name, role } = await requestUser('/users', { email });
+      const { name, role, id } = await sendData('/users', { email });
       const userData = {
+        id,
         name,
         email,
         role,
