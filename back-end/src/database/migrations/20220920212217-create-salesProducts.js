@@ -28,7 +28,7 @@ module.exports = {
         field: 'product_id',
       },
       quantity: {
-        type: Sequelize.DECIMAL,
+        type: Sequelize.INTEGER,
         allowNull: false
       },
     });

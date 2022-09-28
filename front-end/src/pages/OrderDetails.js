@@ -7,9 +7,10 @@ import Table from '../components/Table';
 import { requestData } from '../services/requestUser';
 
 function OrderDetails({ seller }) {
+  console.log('seller', seller);
   const { id } = useParams();
   const [order, setOrder] = useState([]);
-  console.log(id);
+
   useEffect(() => {
     async function getOrders() {
       const result = await requestData(`/sales/${id}`);
@@ -24,7 +25,7 @@ function OrderDetails({ seller }) {
       <Header />
       <h1>Detalhes do Pedido</h1>
       <StatusOrder seller={ seller } order={ order } />
-      <Table button={ false } />
+      <Table order={ order } button={ false } />
       <div>
         Total: R$
         <span

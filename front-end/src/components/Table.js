@@ -4,8 +4,9 @@ import appContext from '../context/appContext';
 
 function Table(props) {
   const { removeFromCart } = useContext(appContext);
-  const cart = JSON.parse(localStorage.getItem('cart'));
-  const { button } = props;
+  // const cart = JSON.parse(localStorage.getItem('cart'));
+  const { button, order } = props;
+  console.log(order);
 
   return (
     <table className="table">
@@ -20,7 +21,7 @@ function Table(props) {
         </tr>
       </thead>
 
-      {cart.map(({ id, title, qtd, price, subTotal }, index) => (
+      {order.map(({ id, title, qtd, price, subTotal }, index) => (
         <tbody key={ id }>
           <tr>
             <td
