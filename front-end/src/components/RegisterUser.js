@@ -9,7 +9,6 @@ function RegisterUser() {
   const [buttonDisabled, setButtonDisabled] = useState(true);
   const [isRegistered, setIsRegistered] = useState(false);
   const [failedTryRegister, setFailedTryRegister] = useState(false);
-
   console.log(isRegistered);
 
   const handleLoginValidation = () => {
