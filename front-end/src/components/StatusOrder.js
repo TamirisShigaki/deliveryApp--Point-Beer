@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import moment from 'moment/moment';
+import moment from 'moment';
 
 function StatusOrder({ seller, order }) {
   const [checked, setChecked] = useState(false);
