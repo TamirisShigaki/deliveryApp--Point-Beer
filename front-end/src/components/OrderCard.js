@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import './Card.css';
+// import './Card.css';
 
 function OrderCard({ seller, order: { id, status, saleDate, totalPrice } }) {
   const navigate = useNavigate();
