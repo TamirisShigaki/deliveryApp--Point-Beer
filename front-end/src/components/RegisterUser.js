@@ -14,7 +14,7 @@ function RegisterUser() {
 
   const handleLoginValidation = () => {
     const emailRegex = /\S+@\S+\.\S+/;
-    const minLengthPassword = 5;
+    const minLengthPassword = 6;
     const minLengthName = 12;
     const validEmail = emailRegex.test(email);
     if (
@@ -23,6 +23,7 @@ function RegisterUser() {
       && username.length >= minLengthName
     ) {
       setButtonDisabled(false);
+      console.log(buttonDisabled);
     } else {
       setButtonDisabled(true);
     }
@@ -46,15 +47,17 @@ function RegisterUser() {
       await sendData('/users/register', { username, email, password, role: type });
       setFailedTryRegister(false);
       setIsRegistered(true);
-      window.location.reload(true);
     } catch (error) {
       setFailedTryRegister(true);
-      setIsRegistered(false);
     }
   };
 
   return (
     <main className="main-register">
+      { failedTryRegister && (
+        <span data-testid="admin_manage__element-invalid-register">
+          Dados inexistentes
+        </span>)}
       <form className="form-register">
         <label htmlFor="username">
           Nome:
@@ -124,10 +127,6 @@ function RegisterUser() {
           Cadastrar
         </button>
       </form>
-      { failedTryRegister && (
-        <span data-testid="admin_manage__element-invalid_register">
-          Dados inexistentes
-        </span>)}
     </main>
   );
 }
