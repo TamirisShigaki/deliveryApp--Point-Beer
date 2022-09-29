@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { sendData, setToken } from '../services/requestUser';
 
@@ -10,16 +10,21 @@ function Login() {
 
   const navigate = useNavigate();
 
-  useEffect(() => {
+  const redirectUser = () => {
     const user = JSON.parse(localStorage.getItem('user'));
     if (user) {
       if (user.role === 'customer') {
         navigate('/customer/products');
-      }
-      if (user.role === 'seller') {
-        navigate('/seller');
+      } else if (user.role === 'seller') {
+        navigate('/seller/orders');
+      } else if (user.role === 'administrator') {
+        navigate('/admin/manage');
       }
     }
+  };
+
+  useEffect(() => {
+    redirectUser();
   }, []);
 
   const handleLoginValidation = () => {
@@ -56,7 +61,8 @@ function Login() {
         token,
       };
       localStorage.setItem('user', JSON.stringify(userData));
-      navigate('/customer/products');
+      // navigate('/customer/products');
+      redirectUser();
     } catch (error) {
       console.log(error);
       setFailedTryLogin(true);

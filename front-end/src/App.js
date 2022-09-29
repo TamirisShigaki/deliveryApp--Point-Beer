@@ -8,6 +8,7 @@ import Orders from './pages/Orders';
 import AppProvider from './context/appProvider';
 import CompletedOrder from './components/CompletedOrder';
 import OrderDetails from './pages/OrderDetails';
+import AdminManage from './pages/AdminManage';
 
 function App() {
   return (
@@ -18,9 +19,15 @@ function App() {
           <Route path="/login" element={ <Login /> } />
           <Route path="/customer/products" element={ <Products /> } />
           <Route path="/register" element={ <Register /> } />
-          <Route path="/customer/orders" element={ <Orders /> } />
-          <Route path="/customer/orders/:id" element={ <OrderDetails /> } />
+          <Route path="/customer/orders" element={ <Orders seller={ false } /> } />
+          <Route path="/seller/orders" element={ <Orders seller /> } />
+          <Route
+            path="/customer/orders/:id"
+            element={ <OrderDetails seller={ false } /> }
+          />
+          <Route path="/seller/orders/:id" element={ <OrderDetails seller /> } />
           <Route path="/customer/checkout" element={ <CompletedOrder /> } />
+          <Route path="/admin/manage" element={ <AdminManage /> } />
         </Routes>
       </Router>
     </AppProvider>

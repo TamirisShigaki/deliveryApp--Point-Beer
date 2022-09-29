@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import PropTypes from 'prop-types';
-import './Card.css';
+// import './Card.css';
 import appContext from '../context/appContext';
 
 function Card({ price, img, title, id }) {

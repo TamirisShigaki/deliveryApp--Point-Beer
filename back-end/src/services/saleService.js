@@ -56,19 +56,31 @@ const saleService = {
     return sales;
   },
 
+  // eslint-disable-next-line max-lines-per-function
   getSaleById: async (id) => {
     const sale = await db.sales.findOne({
       where: { id },
       include: [
-      { model: db.users, as: 'user', attributes: { exclude: 'password' } },
+      // { model: db.users, as: 'user', attributes: { exclude: 'password' } },
       { model: db.users, as: 'seller', attributes: { exclude: 'password' } },
+      { model: db.products, as: 'products', through: db.salesProducts },
     ] });
+
+    // const saleProducts = await db.salesProducts.findByPk(id, {
+    //   // include: db.products,
+    //   include: [
+    //   { model: db.products, as: 'products', attributes: [] },
+    //   ],
+    // });
     console.log(sale);
+    // console.log(saleProducts);
     if (!sale) {
       const e = new Error('Sale does note exist');
       e.name = 'NotFoundError';
       throw e;
     }
+
+    // const newObj = { sale, saleProducts };
     return sale;
   },
 };

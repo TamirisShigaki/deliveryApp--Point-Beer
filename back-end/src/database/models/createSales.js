@@ -9,14 +9,10 @@ const createSales = (sequelize, DataTypes) => {
     userId: {
       type: DataTypes.INTEGER,
       foreignKey: true,
-      onDelete: 'CASCADE',
-      onUpdate: 'CASCADE'
     },
     sellerId: {
       type: DataTypes.INTEGER,
       foreignKey: true,
-      onDelete: 'CASCADE',
-      onUpdate: 'CASCADE'
     },
     totalPrice: DataTypes.DECIMAL,
     deliveryAddress: DataTypes.STRING,
