@@ -7,9 +7,10 @@ import Table from '../components/Table';
 import { requestData } from '../services/requestUser';
 
 function OrderDetails({ seller }) {
+  console.log('seller', seller);
   const { id } = useParams();
   const [order, setOrder] = useState([]);
-  console.log(order);
+
   useEffect(() => {
     async function getOrders() {
       const result = await requestData(`/sales/${id}`);
@@ -24,11 +25,13 @@ function OrderDetails({ seller }) {
       <Header />
       <h1>Detalhes do Pedido</h1>
       <StatusOrder seller={ seller } order={ order } />
-      <Table button={ false } />
+      <Table order={ order } button={ false } />
       <div>
         Total: R$
         <span
-          data-testid="customer_order_details__element-order-total-price"
+          data-testid={
+            `${seller ? 'seller' : 'customer'}_order_details__element-order-total-price`
+          }
         >
           {` ${total?.replace(/\./, ',')}`}
         </span>

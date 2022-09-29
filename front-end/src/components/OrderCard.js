@@ -18,7 +18,7 @@ function OrderCard({ seller, order: { id, status, saleDate, totalPrice } }) {
 
     <button
       type="button"
-      onClick={ () => navigate(`/customer/orders/${id}`) }
+      onClick={ () => navigate(`/${seller ? 'seller' : 'customer'}/orders/${id}`) }
     >
       Pedido
       <span

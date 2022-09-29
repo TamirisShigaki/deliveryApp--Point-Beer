@@ -6,6 +6,7 @@ function Table(props) {
   const { removeFromCart } = useContext(appContext);
   const cart = JSON.parse(localStorage.getItem('cart'));
   const { button } = props;
+  // console.log(order);
 
   return (
     <table className="table">

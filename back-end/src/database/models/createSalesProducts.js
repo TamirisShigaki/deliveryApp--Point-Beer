@@ -4,15 +4,11 @@ const createSalesProducts = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       primaryKey: true,
       foreignKey: true,
-      onDelete: 'CASCADE',
-      onUpdate: 'CASCADE'
     },
     productId: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       foreignKey: true,
-      onDelete: 'CASCADE',
-      onUpdate: 'CASCADE'
     },
     quantity: DataTypes.INTEGER,
   }, {
@@ -25,14 +21,14 @@ const createSalesProducts = (sequelize, DataTypes) => {
     db.products.belongsToMany(db.sales, {
       as: 'sales',
       through: SalesProducts,
-      foreignKey: 'product_id',
-      otherKey: 'sale_id',
+      foreignKey: 'productId',
+      otherKey: 'saleId',
     });
     db.sales.belongsToMany(db.products, {
       as: 'products',
       through: SalesProducts,
-      foreignKey: 'sale_id',
-      otherKey: 'product_id',
+      foreignKey: 'saleId',
+      otherKey: 'productId',
     });
   }
 

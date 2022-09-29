@@ -15,14 +15,6 @@ const createProducts = (sequelize, DataTypes) => {
     underscored: true,
   });
 
-  // Sales.associate = (db) => {
-  //   Sales.belongsTo(db.User, { as: 'user', foreignKey: 'user_id' });
-  // }
-
-  // Sales.associate = (db) => {
-  //   Sales.belongsTo(db.User, { as: 'seller', foreignKey: 'seller_id' });
-  // }
-
   return Products;
 };
 
