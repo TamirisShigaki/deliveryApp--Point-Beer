@@ -1,13 +1,13 @@
-# :construction: README customizado em construção ! :construction:
-<!-- Olá, Tryber!
-Esse é apenas um arquivo inicial para o README do seu projeto no qual você pode customizar e reutilizar todas as vezes que for executar o trybe-publisher.
+# 🚧 Readme em construção 🚧
 
-Para deixá-lo com a sua cara, basta alterar o seguinte arquivo da sua máquina: ~/.student-repo-publisher/custom/_NEW_README.md
+## 34 – Projeto Delivery APP (Point Beer)
 
-É essencial que você preencha esse documento por conta própria, ok?
-Não deixe de usar nossas dicas de escrita de README de projetos, e deixe sua criatividade brilhar!
-:warning: IMPORTANTE: você precisa deixar nítido:
-- quais arquivos/pastas foram desenvolvidos por você; 
-- quais arquivos/pastas foram desenvolvidos por outra pessoa estudante;
-- quais arquivos/pastas foram desenvolvidos pela Trybe.
--->
+## Contexto
+
+Último projeto do módulo Back-end desenvolvido na Trybe, onde tivemos que desenvolver uma aplicação Full Stack que simula um aplicativo de entrega de bebidas, que nomeamos como Point Beer.
+
+## Grupo
+
+<img src='https://avatars.githubusercontent.com/u/92694171?v=4' width='100' />|<img src='https://avatars.githubusercontent.com/u/94326866?v=4' width='100' />|<img src='https://avatars.githubusercontent.com/u/94487432?v=4' width='100' />|<img src='https://avatars.githubusercontent.com/u/78918784?v=4' width='100' />|<img src='https://avatars.githubusercontent.com/u/55467510?v=4' width='100' />
+:-:|:-:|:-:|:-:|:-:
+[Queite Castiglioni](https://github.com/queite)|[Tamiris Shigaki](https://github.com/TamirisShigaki)|[João Silva](https://github.com/JoaopSilvaa)|[Ramond Falção](https://github.com/ramondfalcao)|[Israel Jerônimo](https://github.com/Israeljs)
